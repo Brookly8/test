@@ -1,0 +1,53 @@
+body {
+  background-color: azure;
+  margin: 0px;
+  padding: 20px;
+}
+
+.top {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+button {
+  width: 150px;
+  height: 40px;
+  margin-top: 10px;
+  background-color: lightblue;
+  border-radius: 10px;
+}
+
+button:hover {
+  background-color: rgb(204, 230, 239);
+}
+button:active {
+  background-color: rgb(241, 245, 247);
+}
+
+img {
+  width: 250px;
+  height: 250px;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.personList {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.user {
+  background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+}
