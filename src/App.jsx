@@ -3,41 +3,27 @@ import "./App.css";
 import axios from "axios";
 
 function App() {
-  const [people, setPeople] = useState("");
-  const [person, setPerson] = useState([]);
+  const [people, setPerson] = useState([]);
+  const [filtered, setFiltered] = useState([]);
 
   const allClickHendler = () => {
-    setPeople("all");
+    setFiltered(people);
   };
 
   const manClickHendler = () => {
-    setPeople("man");
+    const filteredManData = people.filter((item) => item.gender === "male");
+    setFiltered(filteredManData);
   };
 
   const womanClickHendler = () => {
-    setPeople("woman");
+    const filteredWomanData = people.filter((item) => item.gender === "female");
+    setFiltered(filteredWomanData);
   };
 
   const GetPeople = async () => {
     try {
       const { data } = await axios("https://randomuser.me/api/?results=20");
-      if (people === "man") {
-        const filteredManData = data.results.filter(
-          (item) => item.gender === "male"
-        );
-        setPerson(filteredManData);
-      }
-
-      if (people === "woman") {
-        const filteredWomanData = data.results.filter(
-          (item) => item.gender === "female"
-        );
-        setPerson(filteredWomanData);
-      }
-
-      if (people === "all") {
-        setPerson(data.results);
-      }
+      setPerson(data.results);
     } catch (error) {
       console.log(error);
     }
@@ -47,8 +33,8 @@ function App() {
     if (people) {
       GetPeople();
     }
-  }, [people]);
-  console.log(person);
+  }, []);
+  console.log(people);
   return (
     <>
       <div className="buttons">
@@ -57,7 +43,7 @@ function App() {
         <button onClick={womanClickHendler}>Woman</button>
       </div>
       <div className="main">
-        {person.map((p, index) => (
+        {filtered.map((p, index) => (
           <div className="person" key={index}>
             <img src={p.picture.large} alt="" />
             <p className="name">
